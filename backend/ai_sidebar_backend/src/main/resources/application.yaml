@@ -1,0 +1,61 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: qwen
+  profiles:
+    active: dev
+  ai:
+#    openai:
+#      base-url: https://spark-api-open.xf-yun.com/v2/chat/completions
+#      api-key: sJXiWdDgWrHIFZYidwHF:atudLBWFJicPMtDKNJrO
+#      embedding:
+#        options:
+#          model: Spark X1
+#      chat:
+#        api-key: sJXiWdDgWrHIFZYidwHF:atudLBWFJicPMtDKNJrO
+#        base-url: https://spark-api-open.xf-yun.com/v2/chat/completions
+#        options:
+#          model: Spark X1
+    openai:
+      # 默认OpenAI配置（供Spring AI自动配置使用）
+      api-key: sk-03811de2660b406585995fc5f1f38481
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      chat:
+        api-key: sk-03811de2660b406585995fc5f1f38481
+        base-url: https://dashscope.aliyuncs.com/compatible-mode
+      # 用于纯文本对话的qwen-max模型
+      text:
+        base-url: https://dashscope.aliyuncs.com/compatible-mode
+        api-key: sk-03811de2660b406585995fc5f1f38481
+        chat:
+          options:
+            model: qwen-max
+      # 用于多模态理解的qwen-vl-max模型
+      multimodal:
+        base-url: https://dashscope.aliyuncs.com/compatible-mode
+        api-key: sk-03811de2660b406585995fc5f1f38481
+        chat:
+          options:
+            model: qwen-vl-max
+  web:
+    resources:
+      static-locations: classpath:/static/
+  datasource:
+    url: jdbc:mysql://localhost:3306/ai_sidebar?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: off
